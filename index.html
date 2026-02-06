@@ -1,355 +1,40 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Evos Anap</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
 <style>
-/* ================= ROOT ================= */
-:root{
-  --card-dark:linear-gradient(180deg,#18181b,#0f0f12);
-  --card-light:linear-gradient(180deg,#ffffff,#e4e4e7);
-}
-
-/* ================= BODY ================= */
-body{
-  margin:0;
-  overflow-x:hidden;
-}
-body.light{background:#f4f4f5;color:black;}
-body.light .page-box{background:var(--card-light);color:black;}
-body.light .list li{background:#e4e4e7;}
-body.light .list li:hover{background:#d4d4d8;}
-
-/* ================= PARTICLE BACKGROUND ================= */
-#particle-canvas{
-  position:fixed;
-  inset:0;
-  z-index:0;
-}
-
-/* ================= CONTENT LAYER ================= */
-.app-layer{
-  position:relative;
-  z-index:5;
-}
-
-/* ================= CARD ================= */
-.page-box{
-  width:100%;max-width:380px;padding:20px;
-  background:var(--card-dark);border-radius:20px;
-  text-align:center;box-shadow:0 0 50px rgba(0,0,0,.7);
-}
-
-/* ================= PROFILE ================= */
-.profile-wrap{display:flex;justify-content:center;margin-top:-10px;margin-bottom:6px;}
-.rgb-ring{
-  width:110px;height:110px;border-radius:50%;padding:4px;
-  background:linear-gradient(90deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#7a00ff,#ff00c8,#ff0000);
-  background-size:400%;
-  animation:rgb 6s linear infinite,float 3s ease-in-out infinite;
-  box-shadow:0 0 30px rgba(255,255,255,.6);
-}
-.profile-img{width:100%;height:100%;object-fit:cover;border-radius:50%;background:#000;}
-
-/* ================= GREETING ================= */
-.greeting{
-  font-weight:700;
-  margin-top:6px;
-  margin-bottom:6px;
-  font-size:14px;
-  animation:textGlow 1.5s infinite alternate;
-}
-
-/* ================= BUTTON ================= */
-.btn{
-  position:relative;display:block;width:100%;
-  padding:12px;border-radius:14px;
-  background:white;color:black;font-weight:700;
-  z-index:1;overflow:hidden;
-  transition:.3s;
-}
-.btn::before{
-  content:"";position:absolute;inset:0;
-  padding:2px;border-radius:14px;
-  background:linear-gradient(90deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#7a00ff,#ff00c8,#ff0000);
-  background-size:400%;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  animation:rgb 6s linear infinite;
-}
-.btn:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 0 30px rgba(255,255,255,.25);}
-
-.btn-sm{
-  display:block;margin-bottom:10px;padding:10px;border-radius:10px;
-  background:#3f3f46;color:white;font-weight:600;transition:.25s;
-}
-.btn-sm:hover{transform:scale(1.05)}
-
-/* ================= PAGE ================= */
-.page{min-height:100vh;display:none;align-items:center;justify-content:center;animation:fadeSlide .5s ease}
-
-/* ================= LIST ================= */
-.title{font-size:18px;font-weight:700;margin-bottom:12px;animation:textGlow 1.5s infinite alternate;}
-.list{margin-bottom:16px}
-.list li{
-  background:#27272a;margin:6px 0;padding:10px;border-radius:10px;
-  transition:.25s;animation:fadeUp .4s ease;
-}
-.list li:hover{transform:translateX(6px) scale(1.02);background:#323238;}
-.list li a{display:block}
-
-.back{
-  margin-top:10px;padding:10px 16px;border-radius:10px;
-  background:white;color:black;font-weight:600;transition:.25s;
-}
-.back:hover{transform:scale(1.05) translateX(-3px)}
-
-/* ================= MODE ================= */
-.mode-toggle{
-  position:fixed;top:14px;right:14px;z-index:999;
-  padding:10px 14px;border-radius:999px;
-  background:rgba(255,255,255,.15);backdrop-filter:blur(10px);
-  color:white;font-weight:700;cursor:pointer;
-}
-
-/* ================= NAME MODAL ================= */
-.name-modal{
-  position:fixed;inset:0;background:rgba(0,0,0,.7);
-  display:flex;align-items:center;justify-content:center;z-index:9999;
-}
-.name-box{
-  background:#0f0f12;padding:25px;border-radius:20px;
-  text-align:center;width:90%;max-width:320px;
-  box-shadow:0 0 40px rgba(255,255,255,.2);
-  animation:cardPop .4s ease;
-}
-.name-box input{
-  width:100%;padding:10px;border-radius:10px;
-  background:#1f1f23;color:white;margin-bottom:10px;border:none;outline:none;
-}
-.name-box button{
-  width:100%;padding:10px;border-radius:10px;
-  background:white;color:black;font-weight:700;
-}
-
-/* ================= ANIMATIONS ================= */
-@keyframes rgb{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes fadeSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes cardPop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes textGlow{from{text-shadow:0 0 5px rgba(255,255,255,.2)}to{text-shadow:0 0 15px rgba(255,255,255,.6)}}
+/* ====== STYLE ASLI TIDAK DIUBAH ====== */
+:root{--card-dark:linear-gradient(180deg,#18181b,#0f0f12);--card-light:linear-gradient(180deg,#ffffff,#e4e4e7);}body{margin:0;overflow-x:hidden;}body.light{background:#f4f4f5;color:black;}body.light .page-box{background:var(--card-light);color:black;}body.light .list li{background:#e4e4e7;}body.light .list li:hover{background:#d4d4d8;}#particle-canvas{position:fixed;inset:0;z-index:0;} .app-layer{position:relative;z-index:5;} .page-box{width:100%;max-width:380px;padding:20px;background:var(--card-dark);border-radius:20px;text-align:center;box-shadow:0 0 50px rgba(0,0,0,.7);} .profile-wrap{display:flex;justify-content:center;margin-top:-10px;margin-bottom:6px;} .rgb-ring{width:110px;height:110px;border-radius:50%;padding:4px;background:linear-gradient(90deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#7a00ff,#ff00c8,#ff0000);background-size:400%;animation:rgb 6s linear infinite,float 3s ease-in-out infinite;box-shadow:0 0 30px rgba(255,255,255,.6);} .profile-img{width:100%;height:100%;object-fit:cover;border-radius:50%;background:#000;} .greeting{font-weight:700;margin-top:6px;margin-bottom:6px;font-size:14px;animation:textGlow 1.5s infinite alternate;} .btn{position:relative;display:block;width:100%;padding:12px;border-radius:14px;background:white;color:black;font-weight:700;z-index:1;overflow:hidden;transition:.3s;} .btn::before{content:"";position:absolute;inset:0;padding:2px;border-radius:14px;background:linear-gradient(90deg,#ff0000,#ff7300,#fffb00,#48ff00,#48ff00,#00ffd5,#002bff,#7a00ff,#ff00c8,#ff0000);background-size:400%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rgb 6s linear infinite;} .btn:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 0 30px rgba(255,255,255,.25);} .btn-sm{display:block;margin-bottom:10px;padding:10px;border-radius:10px;background:#3f3f46;color:white;font-weight:600;transition:.25s;} .btn-sm:hover{transform:scale(1.05)} .page{min-height:100vh;display:none;align-items:center;justify-content:center;animation:fadeSlide .5s ease} .title{font-size:18px;font-weight:700;margin-bottom:12px;animation:textGlow 1.5s infinite alternate;} .list{margin-bottom:16px} .list li{background:#27272a;margin:6px 0;padding:10px;border-radius:10px;transition:.25s;animation:fadeUp .4s ease;} .list li:hover{transform:translateX(6px) scale(1.02);background:#323238;} .list li a{display:block} .back{margin-top:10px;padding:10px 16px;border-radius:10px;background:white;color:black;font-weight:600;transition:.25s;} .back:hover{transform:scale(1.05) translateX(-3px)} .mode-toggle{position:fixed;top:14px;right:14px;z-index:999;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);color:white;font-weight:700;cursor:pointer;} .name-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:9999;} .name-box{background:#0f0f12;padding:25px;border-radius:20px;text-align:center;width:90%;max-width:320px;box-shadow:0 0 40px rgba(255,255,255,.2);animation:cardPop .4s ease;} .name-box input{width:100%;padding:10px;border-radius:10px;background:#1f1f23;color:white;margin-bottom:10px;border:none;outline:none;} .name-box button{width:100%;padding:10px;border-radius:10px;background:white;color:black;font-weight:700;} @keyframes rgb{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}} @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}} @keyframes fadeSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} @keyframes cardPop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}} @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}} @keyframes textGlow{from{text-shadow:0 0 5px rgba(255,255,255,.2)}to{text-shadow:0 0 15px rgba(255,255,255,.6)}}
 </style>
 </head>
-
 <body class="min-h-screen bg-black text-white">
-
-<!-- PARTICLE CANVAS -->
 <canvas id="particle-canvas"></canvas>
-
 <div class="app-layer">
-
-<div class="mode-toggle" onclick="toggleMode()">🌙 / ☀️</div>
-
-<!-- NAME MODAL -->
-<div id="nameModal" class="name-modal">
-  <div class="name-box">
-    <h2 class="font-bold text-lg">😎wellcome boss🚀</h2>
-    <p class="text-sm text-gray-400 mb-2">lau siape? mrpuy🤬<p>
-    <input id="nameInput" type="text" placeholder="nama lau ketik disni" />
-    <button onclick="saveName()">iya mok🤓</button>
-  </div>
-</div>
-
-<!-- HOME -->
-<div id="home" class="min-h-screen flex items-center justify-center">
-  <div class="page-box">
-
-    <div class="profile-wrap">
-      <div class="rgb-ring">
-        <img src="logo.png" class="profile-img">
-      </div>
-    </div>
-
-    <div id="greeting" class="greeting"></div>
-
-    <h1 class="text-xl font-bold">evos anap</h1>
-    <p class="text-sm text-gray-400 mb-6">anap ganteng idaman stecu aydol kalian<br>top reseller mlbb since 2025</p>
-
-    <div class="space-y-3">
-      <a href="https://wa.me/6285183397447" class="btn">📞 Nomor Admin Utama</a>
-      <a href="https://chat.whatsapp.com/LeUM3OAglOl99eYuFd2rO6" class="btn">💬 Grup Jual Beli Terbuka</a>
-      <button onclick="openPage('own')" class="btn">📂 List Own</button>
-      <a href="https://whatsapp.com/channel/0029Vb84CL6KLaHoXEFidT2C" class="btn">SALURAN WITH OWN</a>
-      <button onclick="openPage('v1')" class="btn">SALURAN V1 + LIST ADMIN</button>
-      <button onclick="openPage('v2')" class="btn">SALURAN V2 + LIST ADMIN</button>
-      <a href="https://whatsapp.com/channel/0029Vb7DKQU1NCrZpafT6y3Y" class="btn">SALURAN V3 (NEW)</a>
-    </div>
-
-  </div>
-</div>
-
-<!-- OWN -->
-<div id="own" class="page">
-  <div class="page-box">
-    <h2 class="title">📂 LIST OWN</h2>
-    <ul class="list">
-      <li><a href="https://wa.me/6282266305388">Rapss Kamisato</a></li>
-      <li><a href="https://wa.me/6285332634927">Ian Store</a></li>
-      <li><a href="https://wa.me/6287859030934">Bang N1k</a></li>
-      <li><a href="https://wa.me/6287879470292">Zephry Store</a></li>
-      <li><a href="https://wa.me/6282292957812">Shopgame Rox</a></li>
-      <li><a href="https://wa.me/62881027858115">Namikaze</a></li>
-      <li><a href="https://wa.me/6285718934027">Rizkan</a></li>
-    </ul>
-    <button onclick="goHome()" class="back">⬅ Kembali</button>
-  </div>
-</div>
-
-<!-- V1 -->
-<div id="v1" class="page">
-  <div class="page-box">
-    <h2 class="title">SALURAN V1</h2>
-    <a href="https://whatsapp.com/channel/0029VbAhoIMCRs1qvCsddA44" class="btn-sm">📢 Link Saluran</a>
-    <ul class="list">
-      <li><a href="https://wa.me/62895608521050">Gaxzz</a></li>
-      <li><a href="https://wa.me/6285810058451">Jrixx</a></li>
-      <li><a href="https://wa.me/62881027858115">Namikaze</a></li>
-      <li><a href="https://wa.me/6285718934027">RizkanStarboy</a></li>
-      <li><a href="https://wa.me/6283169274881">Ress</a></li>
-      <li><a href="https://wa.me/6282266305388">Rapss</a></li>
-      <li><a href="https://wa.me/628977473768">Shiki</a></li>
-      <li><a href="https://wa.me/6281343243912">Kim Pikar Amanah 🇰🇷</a></li>
-    </ul>
-    <button onclick="goHome()" class="back">⬅ Kembali</button>
-  </div>
-</div>
-
-<!-- V2 -->
-<div id="v2" class="page">
-  <div class="page-box">
-    <h2 class="title">SALURAN V2</h2>
-    <a href="https://whatsapp.com/channel/0029VasvJyKLdQea2atz4a0a" class="btn-sm">📢 Link Saluran</a>
-    <ul class="list">
-      <li><a href="https://wa.me/6282266305388">Rapss</a></li>
-      <li><a href="https://wa.me/6287879470292">Zephry</a></li>
-      <li><a href="https://wa.me/6282260341099">Kazz</a></li>
-      <li><a href="https://wa.me/6281318213585">FarreL</a></li>
-      <li><a href="https://wa.me/6285656641172">Eroz</a></li>
-      <li><a href="https://wa.me/6282292957812">Rox hensem</a></li>
-      <li><a href="https://wa.me/6283830898187">Yoo Zol</a></li>
-      <li><a href="https://wa.me/6287817098991">Kibaa</a></li>
-      <li><a href="https://wa.me/628134875623">dricz</a></li>
-      <li><a href="https://wa.me/6285830325641">Lex</a></li>
-    </ul>
-    <button onclick="goHome()" class="back">⬅ Kembali</button>
-  </div>
-</div>
-
-</div>
-
+<div class="mode-toggle" onclick="toggleMode()">🌙 / ☀️</div><!-- NAME MODAL --><div id="nameModal" class="name-modal"><div class="name-box"><h2 class="font-bold text-lg">😎wellcome boss🚀</h2><p class="text-sm text-gray-400 mb-2">lau siape? mrpuy🤬</p><input id="nameInput" type="text" placeholder="nama lau ketik disni" /><button onclick="saveName()">iya mok🤓</button></div></div><!-- HOME --><div id="home" class="min-h-screen flex items-center justify-center"><div class="page-box">
+<div class="profile-wrap"><div class="rgb-ring"><img src="logo.png" class="profile-img"></div></div>
+<div id="greeting" class="greeting"></div>
+<h1 class="text-xl font-bold">evos anap</h1>
+<p class="text-sm text-gray-400 mb-6">anap ganteng idaman stecu aydol kalian<br>top reseller mlbb since 2025</p>
+<div class="space-y-3">
+<a href="https://wa.me/6285183397447" class="btn">📞 Nomor Admin Utama</a>
+<a href="https://chat.whatsapp.com/LeUM3OAglOl99eYuFd2rO6" class="btn">💬 Grup Jual Beli Terbuka</a>
+<button onclick="openPage('v1')" class="btn" >Saluran V1 + List Admin</button>
+<button onclick="openPage('v2')" class="btn"> Saluran V2 + List Admin</button>
+<button onclick="openPage('v3')" class="btn"> Saluran V3 + List Admin</button>
+<a href="https://whatsapp.com/channel/0029Vb7DKQU1NCrZpafT6y3Y" class="btn"> Saluran V4 (blm ada admin wk)</a>
+</div></div></div><!-- V1 --><div id="v1" class="page"><div class="page-box"><h2 class="title">SALURAN V1</h2><a href="https://whatsapp.com/channel/0029VbAhoIMCRs1qvCsddA44" class="btn-sm">📢 Link Saluran</a><ul class="list"><li><a href="https://wa.me/62895608521050">Gaxzz</a></li><li><a href="https://wa.me/6285810058451">Jrixx</a></li><li><a href="https://wa.me/62881027858115">Namikaze</a></li><li><a href="https://wa.me/6285718934027">RizkanStarboy</a></li><li><a href="https://wa.me/6283169274881">Ress</a></li><li><a href="https://wa.me/6282266305388">Rapss</a></li><li><a href="https://wa.me/628977473768">Shiki</a></li><li><a href="https://wa.me/6281343243912">Kim Pikar Amanah 🇰🇷</a></li></ul><button onclick="goHome()" class="back">⬅ Kembali</button></div></div><!-- V2 --><div id="v2" class="page"><div class="page-box"><h2 class="title">SALURAN V2</h2><a href="https://whatsapp.com/channel/0029VasvJyKLdQea2atz4a0a" class="btn-sm">📢 Link Saluran</a><ul class="list"><li><a href="https://wa.me/6282266305388">Rapss</a></li><li><a href="https://wa.me/6287879470292">Zephry</a></li><li><a href="https://wa.me/6282260341099">Kazz</a></li><li><a href="https://wa.me/6281318213585">FarreL</a></li><li><a href="https://wa.me/6285656641172">Eroz</a></li><li><a href="https://wa.me/6282292957812">Rox hensem</a></li><li><a href="https://wa.me/6283830898187">Yoo Zol</a></li><li><a href="https://wa.me/6287817098991">Kibaa</a></li><li><a href="https://wa.me/628134875623">dricz</a></li><li><a href="https://wa.me/6285830325641">Lex</a></li></ul><button onclick="goHome()" class="back">⬅ Kembali</button></div></div><!-- V3 --><div id="v3" class="page"><div class="page-box"><h2 class="title">SALURAN V3</h2><a href="https://whatsapp.com/channel/0029Vb84CL6KLaHoXEFidT2C" class="btn-sm">📢 Link Saluran</a><ul class="list"><li><a href="https://wa.me/6282266305388">Rapss Kamisato</a></li><li><a href="https://wa.me/6285332634927">Ian Store</a></li><li><a href="https://wa.me/6287859030934">Bang N1k</a></li><li><a href="https://wa.me/6287879470292">Zephry Store</a></li><li><a href="https://wa.me/6282292957812">Shopgame Rox</a></li><li><a href="https://wa.me/62881027858115">Namikaze</a></li><li><a href="https://wa.me/6285718934027">Rizkan</a></li></ul><button onclick="goHome()" class="back">⬅ Kembali</button></div></div></div>
 <script>
-/* ================= PAGE SYSTEM ================= */
-function hideAll(){
-  document.getElementById('home').style.display='none';
-  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-}
-function openPage(id){
-  hideAll();
-  document.getElementById(id).style.display='flex';
-}
-function goHome(){
-  hideAll();
-  document.getElementById('home').style.display='flex';
-}
+function hideAll(){document.getElementById('home').style.display='none';document.querySelectorAll('.page').forEach(p=>p.style.display='none');}
+function openPage(id){hideAll();document.getElementById(id).style.display='flex';}
+function goHome(){hideAll();document.getElementById('home').style.display='flex';}
 goHome();
-
-/* ================= MODE ================= */
-function toggleMode(){
-  document.body.classList.toggle('light');
-}
-
-/* ================= NAME SYSTEM ================= */
-function saveName(){
-  const name=document.getElementById('nameInput').value.trim();
-  if(!name) return;
-  localStorage.setItem("visitorName",name);
-  document.getElementById('nameModal').style.display="none";
-  showGreeting(name);
-}
-function showGreeting(name){
-  document.getElementById('greeting').innerHTML=
-  `Halo king <span style="color:#00ffd5">${name}</span> 👋, selamat datang`;
-}
-window.onload=function(){
-  const saved=localStorage.getItem("visitorName");
-  if(saved){
-    document.getElementById('nameModal').style.display="none";
-    showGreeting(saved);
-  }else{
-    document.getElementById('nameModal').style.display="flex";
-  }
-}
-
-/* ================= PARTICLE ENGINE ================= */
-const canvas = document.getElementById("particle-canvas");
-const ctx = canvas.getContext("2d");
-let particles=[];
-
-function resize(){
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
-}
-window.addEventListener("resize",resize);
-resize();
-
-class Particle{
-  constructor(){
-    this.x=Math.random()*canvas.width;
-    this.y=Math.random()*canvas.height;
-    this.size=Math.random()*2+0.5;
-    this.speedX=(Math.random()-0.5)*0.3;
-    this.speedY=(Math.random()-0.5)*0.3;
-    this.alpha=Math.random()*0.5+0.2;
-  }
-  draw(){
-    ctx.beginPath();
-    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-    ctx.fillStyle=`rgba(255,255,255,${this.alpha})`;
-    ctx.fill();
-  }
-  update(){
-    this.x+=this.speedX;
-    this.y+=this.speedY;
-    if(this.x<0||this.x>canvas.width) this.speedX*=-1;
-    if(this.y<0||this.y>canvas.height) this.speedY*=-1;
-  }
-}
-
-function initParticles(count=90){
-  particles=[];
-  for(let i=0;i<count;i++){
-    particles.push(new Particle());
-  }
-}
-initParticles();
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    p.update();
-    p.draw();
-  });
-  requestAnimationFrame(animate);
-}
-animate();
+function toggleMode(){document.body.classList.toggle('light');}
+function saveName(){const name=document.getElementById('nameInput').value.trim();if(!name)return;localStorage.setItem("visitorName",name);document.getElementById('nameModal').style.display="none";showGreeting(name);} 
+function showGreeting(name){document.getElementById('greeting').innerHTML=`Halo king <span style="color:#00ffd5">${name}</span> 👋, selamat datang`;}
+window.onload=function(){const saved=localStorage.getItem("visitorName");if(saved){document.getElementById('nameModal').style.display="none";showGreeting(saved);}else{document.getElementById('nameModal').style.display="flex";}}
+const canvas=document.getElementById("particle-canvas");const ctx=canvas.getContext("2d");let particles=[];function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}window.addEventListener("resize",resize);resize();class Particle{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.size=Math.random()*2+0.5;this.speedX=(Math.random()-0.5)*0.3;this.speedY=(Math.random()-0.5)*0.3;this.alpha=Math.random()*0.5+0.2;}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${this.alpha})`;ctx.fill();}update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0||this.x>canvas.width)this.speedX*=-1;if(this.y<0||this.y>canvas.height)this.speedY*=-1;}}function initParticles(count=90){particles=[];for(let i=0;i<count;i++){particles.push(new Particle());}}initParticles();function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}animate();
 </script>
-
 </body>
 </html>
