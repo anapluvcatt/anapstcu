@@ -93,8 +93,7 @@ const linkSaluran = [
   {name:'saluran V1', link:'https://whatsapp.com/channel/0029VbAhoIMCRs1qvCsddA44'},
   {name:'saluran V2', link:'https://whatsapp.com/channel/0029VasvJyKLdQea2atz4a0a'},
   {name:'saluran V3', link:'https://whatsapp.com/channel/0029Vb84CL6KLaHoXEFidT2C'},
-  {name:'saluran V4', link:'https://whatsapp.com/channel/0029Vb7DKQU1NCrZpafT6y3Y'}
-],
+  {name:'saluran V4', link:'https://whatsapp.com/channel/0029Vb7DKQU1NCrZpafT6y3Y'},
 {name:'saluran V5', link:'https://whatsapp.com/channel/0029VbBy2UWAojYxD6vcvn2q'}
 ];
 
