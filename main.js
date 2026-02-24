@@ -126,8 +126,20 @@ const masterAdmin = [
   {name:'Lex', link:'https://wa.me/6285830325641'},
   {name:'Ian Store', link:'https://wa.me/6285332634927'},
   {name:'Bang N1k', link:'https://wa.me/6287859030934'}, 
-  {name:'Arx Jb', link:'https://wa.me/6281556927898'},
+{name:'Bntg', link:'https://wa.me/6282312376494'},
 ];
+
+function openPage(pageId) {
+
+  if (pageId === "lihatAdmin") {
+    const lanjut = confirm("PERINGATAN PENTING!! all admin saluran ga dijamin aman, klo ragu rekber/midman ke admin utama aja");
+
+    if (!lanjut) return;
+  }
+
+  document.getElementById("home").style.display = "none";
+  document.getElementById(pageId).style.display = "block";
+}
 
 function renderListAdmin() {
   const container = document.getElementById('lihatAdmin');
