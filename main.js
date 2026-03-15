@@ -153,6 +153,8 @@ const masterAdmin = [
   { name: 'Ian Store', link: 'https://wa.me/6285332634927' },
   { name: 'Bang N1k', link: 'https://wa.me/6287859030934' },
 { name: 'Rrq Dricaz', link: 'https://wa.me/628134875623' },
+{ name: 'Seyka mbg', link: 'https://wa.me/6287874946771' },
+{ name: 'Kisuke kaizen', link: 'https://wa.me/6281990942115' },
   { name: 'Bintg', link: 'https://wa.me/6282312376494' }
 ];
 
