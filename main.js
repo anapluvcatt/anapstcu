@@ -155,7 +155,8 @@ const masterAdmin = [
 { name: 'Rrq Dricaz', link: 'https://wa.me/628134875623' },
 { name: 'Seyka mbg', link: 'https://wa.me/6287874946771' },
 { name: 'Kisuke kaizen', link: 'https://wa.me/6281990942115' },
-  { name: 'Bintg', link: 'https://wa.me/6282312376494' }
+  { name: 'Bintg', link: 'https://wa.me/6282312376494' },
+{ name: 'firman itaiyo', link: 'https://wa.me/6285770610437' }
 ];
 
 function renderListAdmin() {
