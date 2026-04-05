@@ -159,7 +159,8 @@ const masterAdmin = [
 { name: 'firman itaiyo', link: 'https://wa.me/6285770610437' },
 { name: 'kenstecu', link:'https://wa.me/6288905110453'},
 { name: 'kurir', link:'https://wa.me/6288276323009'},
-{ name: 'jena', link:'https://wa.me/6285881809095'}
+{ name: 'jena', link:'https://wa.me/6285881809095'},
+{ name: 'hiko ganz', link:'https://wa.me/6281632269898'}
 ];
 
 function renderListAdmin() {
