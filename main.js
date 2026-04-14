@@ -163,7 +163,7 @@ const masterAdmin = [
 { name: 'hiko ganz', link:'https://wa.me/6281632269898'},
 { name: 'tiko stecu',
 link:'https://wa.me/6283164230470'},
-{ name: 'mr alz', link:'https://wa.me/628214938968'}
+{ name: 'mr alz', link:'https://wa.me/628214938968'},
 { name: 'kamisato yambo', link:'https://wa.me//6285772003711'}
 ];
 
