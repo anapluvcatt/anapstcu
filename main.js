@@ -150,7 +150,6 @@ const masterAdmin = [
   { name: 'Yoo Zol', link: 'https://wa.me/6283830898187' },
   { name: 'Kibaa', link: 'https://wa.me/6287817098991' },
   { name: 'Lex', link: 'https://wa.me/6285830325641' },
-  { name: 'Ian Store', link: 'https://wa.me/6285332634927' },
   { name: 'Bang N1k', link: 'https://wa.me/6287859030934' },
 { name: 'Rrq Dricaz', link: 'https://wa.me/628134875623' },
 { name: 'Seyka mbg', link: 'https://wa.me/6287874946771' },
