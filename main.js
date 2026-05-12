@@ -140,7 +140,7 @@ const masterAdmin = [
   { name: 'Rizkan Starboy', link: 'https://wa.me/6285718934027' },
   { name: 'Ress', link: 'https://wa.me/6283169274881' },
   { name: 'Rapss Kamisato', link: 'https://wa.me/6282266305388' },
-  { name: 'Lamskuy', link: 'https://wa.me/628889934488' },
+  { name: 'Lamskuy', link: 'https://wa.me/62881011637623' },
   { name: 'Kyotaka', link: 'https://wa.me/6288804243746' },
   { name: 'Zephry Store', link: 'https://wa.me/6287879470292' },
   { name: 'Kazz', link: 'https://wa.me/6282260341099' },
