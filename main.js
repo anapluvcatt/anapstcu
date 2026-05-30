@@ -141,7 +141,7 @@ const masterAdmin = [
   { name: 'Ress', link: 'https://wa.me/6283169274881' },
   { name: 'Rapss Kamisato', link: 'https://wa.me/6282266305388' },
   { name: 'Lamskuy', link: 'https://wa.me/62881011637623' },
-  { name: 'Kyotaka', link: 'https://wa.me/6288804243746' },
+  { name: 'Kyotaka', link: 'https://wa.me//62882021911447' },
   { name: 'Zephry Store', link: 'https://wa.me/6287879470292' },
   { name: 'Kazz', link: 'https://wa.me/6282260341099' },
   { name: 'FarreL', link: 'https://wa.me/6281318213585' },
