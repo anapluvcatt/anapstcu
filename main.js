@@ -167,7 +167,8 @@ link:'https://wa.me/6283164230470'},
 { name: 'ARX MLBB', link:'https://wa.me/6281556927898'},
 { name: 'nos mau stok', link:'https://wa.me/62881010863506'},
 { name: 'sabix tennyson', link:'https://wa.me/6283852465307'},
-{ name: 'varane yamada', link:'https://Wa.me//6282190140955'}
+{ name: 'varane yamada', link:'https://Wa.me//6282190140955'},
+{ name: 'jeron', link:'https://wa.me/6285649729182'}
 ];
 
 function renderListAdmin() {
