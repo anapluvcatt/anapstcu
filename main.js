@@ -145,7 +145,7 @@ const masterAdmin = [
   { name: 'Kazz', link: 'https://wa.me/6282260341099' },
   { name: 'FarreL', link: 'https://wa.me/6281318213585' },
   { name: 'Eroz', link: 'https://wa.me/6285656641172' },
-  { name: 'Shopgame Rox', link: 'https://wa.me/6289659912200' },
+  { name: 'Saka store', link: 'https://wa.me/6289659912200' },
   { name: 'Yoo Zol', link: 'https://wa.me/6283830898187' },
   { name: 'Kibaa', link: 'https://wa.me/6287817098991' },
   { name: 'Lex', link: 'https://wa.me/6285830325641' },
